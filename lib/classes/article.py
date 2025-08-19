@@ -20,6 +20,11 @@ class Article:
     def title(self):
         return self._title 
 
+    @title.setter
+    def title(self, value):
+        raise AttributeError("Title cannot be changed")
+
+
     @property
     def author(self):
         return self._author

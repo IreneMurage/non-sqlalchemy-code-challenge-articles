@@ -2,6 +2,7 @@ from .article import Article
 
 class Magazine:
     all = [] 
+
     def __init__(self, name, category):
         if not isinstance(name, str) or not (2 <= len(name) <= 16):
             raise Exception("Magazine name must be a string (2–16 chars)")
@@ -19,9 +20,8 @@ class Magazine:
 
     @name.setter
     def name(self, new_name):
-        if not isinstance(new_name, str) or not (2 <= len(new_name) <= 16):
-            raise Exception("Magazine name must be a string (2–16 chars)")
-        self._name = new_name
+        if isinstance(new_name, str) and (2 <= len(new_name) <= 16):
+            self._name = new_name
 
     @property
     def category(self):
@@ -29,9 +29,8 @@ class Magazine:
 
     @category.setter
     def category(self, new_category):
-        if not isinstance(new_category, str) or len(new_category.strip()) == 0:
-            raise Exception("Category must be a non-empty string")
-        self._category = new_category
+        if isinstance(new_category, str) and len(new_category.strip()) > 0:
+            self._category = new_category
 
     def articles(self):
         return [article for article in Article.all if article.magazine == self]
